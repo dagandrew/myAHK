@@ -4,11 +4,11 @@
 <!F1::Volume_Down ; Left Alt + F1 
 <!F2::Volume_Up   ; Left Alt + F2 
 <!F3::MaxVolume() ; Left Alt + F3
+<!F4::ToggleFxSound() ;Left Alt + F4
 
 <#Esc::Media_Play_Pause ;Left Win + Esc
 <#F1::Media_Prev ;Left Win + F1
 <#F2::Media_Next ;Left Win + F2
-<#F3::ToggleFxSound()
 
 MaxVolume() {
     Send("{Volume_Up}") ; Sends the key to show the volume panel
@@ -36,21 +36,21 @@ ExitFxSound(){
 }
 
 ToggleFxSound(){
-Run('cmd.exe /c tasklist /FI "IMAGENAME eq FxSound.exe" > tasklist_output.txt', , , )
+    Run('cmd.exe /c tasklist /FI "IMAGENAME eq FxSound.exe" > tasklist_output.txt', , , )
 
-; Wait for the file to be created
-Sleep 500
+    ; Wait for the file to be created
+    Sleep 500
 
-; Read the file's contents
-output := FileRead("tasklist_output.txt")
+    ; Read the file's contents
+    output := FileRead("tasklist_output.txt")
 
-; Check if FxSound.exe is running
-if InStr(output, "FxSound.exe") {
-   ExitFxSound()
-} else {
-    LaunchFxSound()
-}
+    ; Check if FxSound.exe is running
+    if InStr(output, "FxSound.exe") {
+       ExitFxSound()
+    } else {
+        LaunchFxSound()
+    }
 
-; Clean up by deleting the temporary file
-FileDelete("tasklist_output.txt")
+    ; Clean up by deleting the temporary file
+    FileDelete("tasklist_output.txt")
 }
