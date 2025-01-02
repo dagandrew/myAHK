@@ -14,17 +14,13 @@ LowerHands(){
     } else {
         Send("{Alt Down}u{Alt Up}") ; Alt+U toggles Participants window
         Sleep(500) ; Wait for window to open
-
         ; Step 2: Wait for Participants Window
         if !WinWait(ParticipantWindow, , 5) {
             MsgBox("Participants window not found.")
             return
         }
-
         ; Step 3: Move Participants Window (Optional)
         WinMove(968, 9, 400, 667, ParticipantWindow) ; Adjust position and size
-
-
     }
         ; Step 4: Open "More" Menu (Three Dots)
     CoordMode("Mouse", "Window") ; Set coordinate mode relative to active window

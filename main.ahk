@@ -38,3 +38,4 @@ CapsLock & LShift::^t ;new tab
 #Include restore.ahk
 #Include m3.ahk
 #Include Lib/mouse.ahk
+#Include personal.ahk

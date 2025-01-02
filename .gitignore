@@ -1,0 +1,8 @@
+# Ignore specific files
+personal.ahk
+
+# Ignore all `.log` files
+*.log
+
+# Ignore an entire directory
+# /node_modules/
