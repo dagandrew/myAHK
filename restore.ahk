@@ -10,3 +10,4 @@ Alt & Tab::!Tab
 Ctrl & Tab::^Tab
 Shift & Tab::+Tab
 Tab::Tab
+<#`::<#`
