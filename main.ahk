@@ -1,6 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
 #SingleInstance force
-
+A_HotkeyModifierTimeout := 100 
 ;copy-paste hotkeys
 F1::^c ; Ctrl + C
 F2::^a ; Ctrl + A
@@ -8,8 +8,10 @@ F3::^v ; Ctrl + V
 F4::^x ; Ctrl + X
 Esc::Home
 `::End
-;F9::DllCall("PowrProf\SetSuspendState", "int", 1, "int", 1, "int", 1) ;sleep
+F9::Reload
+
 F10::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ;hybernate
+
 
 Tab & q::Browser_Back
 Tab & a::Browser_Forward

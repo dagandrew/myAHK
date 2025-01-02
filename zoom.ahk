@@ -11,9 +11,9 @@ LowerHands(){
     CoordMode("Pixel", "Window") ; Ensure coordinates are relative to the screen
     MouseClick("Left", 318, 632) ; Adjust coordinates based on your screen setup
     Sleep(100) ; Wait for menu to open
-    TargetX := 205
+    TargetX := 203
     TargetY := 632
-    UnDesiredColor := "0E72ED"
+    UnDesiredColor := "0E72ED" ;zoom's blue color
 
     ; Get the color at the specified position
     Color := PixelGetColor(TargetX, TargetY, "RGB")
