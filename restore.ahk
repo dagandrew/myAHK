@@ -11,3 +11,9 @@ Ctrl & Tab::^Tab
 Shift & Tab::+Tab
 Tab::Tab
 <#`::<#`
+
++Esc::{
+    Send("{Ctrl up}{Alt up}{Shift up}{Win up}")
+    MsgBox("Modifiers reset!")
+return
+}
