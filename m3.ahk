@@ -15,18 +15,24 @@ CapsLock & a:: {
         Send("{Enter}")
         NextShortcut()
     } else {
-ShareM3()
+		ShareM3()
     }
 }
+
+Capslock & q::^!+t ;pause sharing
+;Capslock & w::
+;Capslock & e::LaunchM3()
+CapsLock & r::ToggleMeetingControls()
+
 PreviousMediaItem(){
-  PreviousShortcut()
-	sleep(300)
+	PreviousShortcut()
+	sleep(500)
 	StopShortcut()
 }
 
 NextMediaItem(){
 	NextShortcut()
-	sleep(300)
+	sleep(500)
 	StopShortcut()
 }
 
@@ -41,17 +47,17 @@ PreviousShortcut(){
 StopShortcut(){
 	Sleep(100)
 	Send("{Alt down}{7}{Alt up}")
-	Sleep(100)
+	Sleep(500)
 	Send("{Alt down}{7}{Alt up}")
 }
 
 
 ChooseSharingWindow() {
     Sleep(2000)
-Loop 3 {
-    Send("{Tab}")
-    Sleep(50) ; Add a slight delay between each Tab press for reliability
-}
+	Loop 3 {
+		Send("{Tab}")
+		Sleep(50) ; Add a slight delay between each Tab press for reliability
+	}
     Sleep(100)
     Send("{Down}")
 }
@@ -61,16 +67,17 @@ ToggleMeetingControls() {
 }
 
 ShareM3() {
-        WinActivate(MediaWindowName)
-Sleep(1000)
-ShareScreen()
-    if WinExist(ZoomWindowName) { ; prepare
-        Sleep(100)
-        ChooseSharingWindow()
-        WinMove(A_ScreenWidth - 100, 0, , , ZoomShareWindowName)
-    } else { ; stop and prepare
-        StopShortcut()
-        ShareM3()
+    If WinExist(MediaWindowName) {
+		WinActivate(MediaWindowName)
+		Sleep(1000)
+		ShareScreen()
+        if WinExist(ZoomWindowName) { ; prepare
+            ChooseSharingWindow()
+            WinMove(A_ScreenWidth - 100, 0, , , ZoomShareWindowName)
+        } else { ; stop and prepare
+            StopShortcut()
+            ShareM3()
+        }
     }
 }
 
@@ -117,5 +124,5 @@ DepartZoomShare() {
 }
 
 ShareScreen() {
-    Send("{Alt Down}s{Alt Up}")
+    Send("{Alt Down}{s}{Alt Up}")
 }

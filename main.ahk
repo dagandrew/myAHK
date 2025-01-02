@@ -12,29 +12,27 @@ Esc::Home
 ;<!2::ClipDiaryNext() ;Left Alt + 1
 ;F9::DllCall("PowrProf\SetSuspendState", "int", 1, "int", 1, "int", 1) ;sleep
 F10::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ;hybernate
-#Requires AutoHotkey v2.0+
 
-CapsLock:: {
-    static isRussian := false
-    isRussian := !isRussian
-    langCode := isRussian ? "0419" : "0409" ; Toggle between Russian (0419) and English (0409)
-    SwitchInputLanguage(langCode)
-}
+Tab & q::Browser_Back
+Tab & a::Browser_Forward
+Tab & w::Scrollup()
+Tab & s::ScrollDown()
+Tab & e::^Z
+Tab & d::^h
+Tab & z::^f
+Tab & x::^s
+Tab & c::^y
 
-SwitchInputLanguage(langCode) {
-    hwnd := WinGetID("A") ; Get the active window's handle
-    if !hwnd {
-        MsgBox("No active window detected!")
-        return
-    }
-    layout := DllCall("LoadKeyboardLayout", "Str", langCode, "UInt", 1, "Ptr")
-    if !layout {
-        MsgBox("Failed to load keyboard layout: " langCode)
-        return
-    }
-    PostMessage(0x50, 0, layout, , hwnd) ; WM_INPUTLANGCHANGEREQUEST = 0x50
-}
+Capslock & Esc::!F4
+CapsLock & `::^w ;close tab
+CapsLock & Tab::^+t ;open prev tab
+CapsLock & LShift::^t ;new tab
 
+<#LAlt::#^c ;grayscale
+
+<#`::#+s
+#Include apps.ahk
+#Include zoom.ahk
 #Include media.ahk
 #Include autocorrect.ahk 
 #Include restore.ahk
