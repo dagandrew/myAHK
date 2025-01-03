@@ -2,7 +2,8 @@
 ` & F4::GoProgram("ahk_exe Taskmgr.exe", "taskmgr.exe")
 ` & CapsLock::GoProgram("ahk_exe notepad++.exe", "C:\Program Files\Notepad++\notepad++.exe")
 ` & LCtrl::GoProgram("ahk_exe msedge.exe", "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-` & Tab::#`
+` & Tab::Send("{Win down}{`}{Win up}") ;command line
+
 GoProgram(window, path) {
     ; Check if the specified window is active
     if WinActive(window) {

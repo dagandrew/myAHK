@@ -8,8 +8,8 @@ F3::^v ; Ctrl + V
 F4::^x ; Ctrl + X
 Esc::Home
 `::End
-F9::Reload
 
+F9::Reload
 F10::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ;hybernate
 
 

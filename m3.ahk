@@ -6,16 +6,17 @@ ZoomWindowName := "Zoom Meeting"
 
 PgUp::PreviousMediaItem()
 PgDn::NextMediaItem()
+
 Capslock & s::ShareZoomSound()
 Capslock & d::DepartZoomShare()
 CapsLock & a:: {
     if WinExist(ZoomShareWindowName) {
+        NextShortcut()
         JumpRightEdge()
         WinActivate(ZoomShareWindowName)
         Send("{Enter}")
-        NextShortcut()
     } else {
-		ShareM3()
+	ShareM3()
     }
 }
 
@@ -25,52 +26,52 @@ Capslock & q::^!+t ;pause sharing
 CapsLock & r::ToggleMeetingControls()
 
 PreviousMediaItem(){
-	PreviousShortcut()
-	sleep(500)
-	StopShortcut()
+    PreviousShortcut()
+    sleep(500)
+    StopShortcut()
 }
 
 NextMediaItem(){
-	NextShortcut()
-	sleep(500)
-	StopShortcut()
+    NextShortcut()
+    sleep(500)
+    StopShortcut()
 }
 
 NextShortcut(){
-	Send("{Alt down}{0}{Alt up}")
+    Send("{Alt down}{0}{Alt up}")
 }
 
 PreviousShortcut(){
-	Send("{Alt down}{9}{Alt up}")
+    Send("{Alt down}{9}{Alt up}")
 }
 
 StopShortcut(){
-	Sleep(100)
-	Send("{Alt down}{7}{Alt up}")
-	Sleep(500)
-	Send("{Alt down}{7}{Alt up}")
+    Loop 2 {
+        Sleep(300)
+        Send("{Alt down}{7}{Alt up}")
+    }
 }
 
 
 ChooseSharingWindow() {
     Sleep(2000)
-	Loop 3 {
-		Send("{Tab}")
-		Sleep(50) ; Add a slight delay between each Tab press for reliability
-	}
+    Loop 3 {
+	Send("{Tab}")
+	Sleep(50) ; Add a slight delay between each Tab press for reliability
+    }
     Sleep(100)
     Send("{Down}")
 }
 
 ToggleMeetingControls() {
-    Send("^!+h")
+    Send("{^!+h}")
 }
 
 ShareM3() {
     If WinExist(MediaWindowName) {
-		WinActivate(MediaWindowName)
-		Sleep(1000)
-		ShareScreen()
+	WinActivate(MediaWindowName)
+	Sleep(1000)
+	ShareScreenShortcut()
         if WinExist(ZoomWindowName) { ; prepare
             ChooseSharingWindow()
             WinMove(A_ScreenWidth - 100, 0, , , ZoomShareWindowName)
@@ -84,7 +85,7 @@ ShareM3() {
 
 ShareZoomSound() {
     WinActivate(ZoomWindowName)
-    ShareScreen()
+    ShareScreenShortcut()
     WinWait(ZoomShareWindowName, , 3)
     Sleep(2000)
     Send("{Tab}")
@@ -102,11 +103,11 @@ ShareZoomSound() {
 DepartZoomShare() {
     WinActivate(MediaWindowName)
     WinActivate(ZoomWindowName)
-    ShareScreen() ; to stop playing music
+    ShareScreenShortcut() ; to stop playing music
     Sleep(1000)
 
     if !WinActive(ZoomShareWindowName) {
-        ShareScreen() ; to launch again
+        ShareScreenShortcut() ; to launch again
         Sleep(1000)
     }
 
@@ -123,6 +124,6 @@ DepartZoomShare() {
     }
 }
 
-ShareScreen() {
+ShareScreenShortcut() {
     Send("{Alt Down}{s}{Alt Up}")
 }
