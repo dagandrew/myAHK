@@ -1,16 +1,17 @@
 ﻿#Requires AutoHotkey v2.0
 #SingleInstance force
 A_HotkeyModifierTimeout := 100 
+SetTitleMatchMode("2")
 ;copy-paste hotkeys
 F1::^c ; Ctrl + C
 F2::^a ; Ctrl + A
 F3::^v ; Ctrl + V
 F4::^x ; Ctrl + X
-Esc::Home
-`::End
+`::Home
+CapsLock::End
 
-F9::Reload
-F10::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ;hybernate
+F6::Reload
+F7::DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0) ;hybernate
 
 
 Tab & q::Browser_Back
